@@ -1,7 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 
+
 export default function TopNav() {
+
     return (
         <>
             <nav class="w-full py-6 bg-white w-screen">
