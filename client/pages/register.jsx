@@ -19,7 +19,7 @@ export default function Register() {
       try {
         setLoading(true)
         const { data } = await axios.post(
-          `/api/register`,
+          `api/register`,
           {
             name,
             email,
