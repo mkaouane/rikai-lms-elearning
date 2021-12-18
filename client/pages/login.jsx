@@ -16,22 +16,16 @@ export default function Login() {
       e.preventDefault();
       // console.table({ name, email, password });
       try {
-        setLoading(true)
-        const { data } = await axios.post(
-          `api/login`,
-          {
-            email,
-            password,
-          })
-      
-      console.log("LOGIN RESPONSE", data);
-    
-      setLoading(false)
-      } catch (error) {
-        toast.error(error.response.data)
-        setLoading(false)
-
-
+        setLoading(true);
+        const { data } = await axios.post(`/api/login`, {
+          email,
+          password,
+        });
+        console.log("LOGIN RESPONSE", data);
+        setLoading(false);
+      } catch (err) {
+        toast(err.response.data);
+        setLoading(false);
       }
     };
 
@@ -48,11 +42,7 @@ export default function Login() {
         </div>
 
         <div class="mt-10">
-          <form action="#">
-         
-             
-             
-            
+          <form onSubmit={handleSubmit} action="#">
             <div class="flex flex-col mb-5">
               <label
                 for="email"
@@ -110,7 +100,6 @@ export default function Login() {
 
             <div class="flex w-full">
               <button
-                onClick={handleSubmit}
                 type="submit"
                 class="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in
                 "
@@ -144,7 +133,7 @@ export default function Login() {
             You don't have an account?
             <Link href="/register">
             <a class="text-xs ml-2 text-blue-500 font-semibold">
-              Register here
+              Login here
             </a>
             </Link>
           </span>
