@@ -1,8 +1,30 @@
 import React from 'react'
 import Link from 'next/link'
+import {Context} from '../context'
+import {useState, useEffect, useContext} from 'react'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
 
 
 export default function TopNav() {
+
+    const [current, setCurrent] = useState("");
+
+    const {state, dispatch} = useContext(Context);
+    const {user} = state;
+
+    const router = useRouter();
+
+    const logout = async () => {
+        dispatch({
+            type: "LOGOUT",
+        });
+        window.localStorage.removeItem("user");
+        const {data} = axios.get('/api/logout');
+        toast(data.message);
+        router.push("/login")
+    }
 
     return (
         <>
@@ -27,7 +49,7 @@ export default function TopNav() {
                                 <div class="w-full h-0.5 bg-transparent group-hover:bg-blue-500 transition-al absolute bottom-0" />
                             </li>
                             <li class="relative group">
-                                <a href="#" class="focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none rounded-lg">About</a>
+                                <a onClick={logout} href="#" class="focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none rounded-lg">About</a>
                                 <div class="w-full h-0.5 bg-transparent group-hover:bg-blue-500 transition-al absolute bottom-0" />
                             </li>
                             <li>
@@ -36,9 +58,11 @@ export default function TopNav() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/login">
-                                <a class="bg-blue-500 px-4 py-1 rounded-xl text-white hover:bg-blue-400 active:bg-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none">Login</a>
-                                </Link>
+                                {user === null && (
+                                    <Link href="/login">
+                                    <a class="bg-blue-500 px-4 py-1 rounded-xl text-white hover:bg-blue-400 active:bg-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none">Login</a>
+                                    </Link>
+                                )}
                             </li>
                         </ul>
                         <button class="flex md:hidden hover:bg-gray-100 p-2 rounded-full transition-all focus:ring focus:ring-purple-500 focus:ring-opacity-25 active:bg-gray-200 outline-none">
