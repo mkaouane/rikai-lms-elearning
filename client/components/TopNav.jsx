@@ -53,9 +53,11 @@ export default function TopNav() {
                                 <div class="w-full h-0.5 bg-transparent group-hover:bg-blue-500 transition-al absolute bottom-0" />
                             </li>
                             <li>
-                                <Link href="/register">
-                                 <a  class="bg-white px-4 py-1 rounded-xl text-gray-900 active:bg-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none">Register</a>
-                                </Link>
+                                {user === null && (
+                                    <Link href="/register">
+                                    <a  class="bg-white px-4 py-1 rounded-xl text-gray-900 active:bg-blue-600 focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none">Register</a>
+                                   </Link>
+                                )}
                             </li>
                             <li>
                                 {user === null && (
