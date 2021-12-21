@@ -1,8 +1,10 @@
 import Link from "next/link";
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useContext} from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import {SyncOutlined} from '@ant-design/icons'
+import { Context } from "../context";
+import { useRouter } from "next/router";
 
 
 export default function Register() {
@@ -12,7 +14,9 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
+    const {state: {user}, dispatch} = useContext(Context)
 
+    const router = useRouter()
     const handleSubmit = async (e) => {
       e.preventDefault();
       // console.table({ name, email, password });
@@ -36,6 +40,10 @@ export default function Register() {
 
       }
     };
+    useEffect(() => {
+      if(user !== null)
+        router.push('/')
+    }, [user]);
 
   return (
     <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React,{useState, useContext} from "react";
+import React,{useState, useContext, useEffect} from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import {SyncOutlined} from '@ant-design/icons'
@@ -15,7 +15,7 @@ export default function Login() {
 
 
     // state
-    const {state, dispatch} = useContext(Context)
+    const {state: {user}, dispatch} = useContext(Context)
 
     // Router
     const router = useRouter();
@@ -42,7 +42,10 @@ export default function Login() {
         setLoading(false);
       }
     };
-
+    useEffect(() => {
+      if(user !== null)
+        router.push('/')
+    }, [user]);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
       <div
