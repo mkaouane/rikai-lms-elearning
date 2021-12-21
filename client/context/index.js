@@ -37,6 +37,7 @@ const router = useRouter();
       type: "LOGIN",
       payload: JSON.parse(window.localStorage.getItem('user'))
     })
+
     return () => {
       
     }
@@ -70,6 +71,15 @@ const router = useRouter();
     }
     return Promise.reject(error);
   });
+
+ useEffect(() => {
+    const getCsrfToken = async () => {
+      const { data } = await axios.get("/api/csrf-token");
+      // console.log("CSRF", data);
+      axios.defaults.headers["X-CSRF-Token"] = data.getCsrfToken;
+    };
+    getCsrfToken();
+  }, []);
 
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>

@@ -27,9 +27,8 @@ export default function TopNav() {
     }
 
     useEffect(() => {
-        if (user !== null)
-            router.push('/')
-    }, [user]);
+        process.browser && setCurrent(window.location.pathname);
+      }, [process.browser && window.location.pathname]);
 
     return (
         <>
@@ -46,11 +45,15 @@ export default function TopNav() {
                     <section>
                         <ul className="md:space-x-8 space-x-6 text-gray-900 font-semibold hidden md:flex">
                             <li className="relative group">
-                                <a href="#" className="group focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none rounded-lg"> {user !== null && (user.name)} </a>
+                                <Link href="/user">
+                                    <a className="group focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none rounded-lg"> {user !== null && (user.name)} </a>
+                                </Link>
                                 <div className="w-full h-0.5 bg-transparent group-hover:bg-blue-500 transition-al absolute bottom-0" />
                             </li>
                             <li className="relative group">
-                                <a href="#" className="focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none rounded-lg">Services</a>
+                                <Link href="/lms">
+                                   <a className="focus:ring focus:ring-blue-500 focus:ring-opacity-25 outline-none rounded-lg">LMS</a>
+                                </Link>
                                 <div className="w-full h-0.5 bg-transparent group-hover:bg-blue-500 transition-al absolute bottom-0" />
                             </li>
                             <li className="relative group">

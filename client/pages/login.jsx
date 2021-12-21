@@ -35,7 +35,7 @@ export default function Login() {
           payload: data,
         })
         window.localStorage.setItem('user', JSON.stringify(data));
-        router.push("/")
+        router.push("/lms")
         setLoading(false);
       } catch (err) {
         toast(err.response.data);
@@ -44,7 +44,7 @@ export default function Login() {
     };
     useEffect(() => {
       if(user !== null)
-        router.push('/')
+        router.push('/lms')
     }, [user]);
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
