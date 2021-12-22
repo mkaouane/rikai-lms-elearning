@@ -81,3 +81,8 @@ export const currentUser = async (req,res) => {
     console.log(error)
   }
 }
+
+export const sendTestEmail = async (req, res) => {
+  console.log('send test email')
+  res.json({hidden: true})
+}
