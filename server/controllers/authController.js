@@ -2,6 +2,16 @@ import { response } from 'express';
 import User from '../models/user'
 import { comparePassword, hashPassword } from '../utils/authUtils'
 import jwt from 'jsonwebtoken'
+import AWS from 'aws-sdk'
+
+const awsConfig = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY_ID,
+  region: process.env.AWS_REGION ,
+  apiVersion: process.env.AWS_API_VERSION
+}
+
+const SES = new AWS.SES(awsConfig)
 
 export const register = async (req, res) => {
   try {
@@ -83,6 +93,37 @@ export const currentUser = async (req,res) => {
 }
 
 export const sendTestEmail = async (req, res) => {
-  console.log('send test email')
-  res.json({hidden: true})
+  // console.log('send test email')
+  // res.json({hidden: true})
+  const params = {
+    Source: process.env.EMAIL_FROM,
+    Destination: {
+      ToAddresses:['mkaouane1@gmail.com'],
+    },
+    ReplyToAddresses: [process.env.EMAIL_FROM],
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: `
+            <html>
+              <h1>Reset password</h1>
+              <p> Please use the following link to reset the password </p>
+            </html>
+          `
+        }
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: "Password Reset Link",
+      }
+    }
+  }
+  const emailSent = SES.sendEmail(params).promise();
+  
+  emailSent.then((data) => {
+    console.log(data),
+    res.json({ok: true})
+  }).catch(err => 
+    console.log(err))
 }
