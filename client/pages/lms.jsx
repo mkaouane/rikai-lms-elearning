@@ -54,7 +54,7 @@ export default function lms() {
               </div>
 
               {/* <!-- Foto --> */}
-              <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"><img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="" /></div>
+              <div class="h-10 w-10 rounded-full cursor-pointer bg-gray-200 border-2 border-blue-400"><img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="avatar" /></div>
             </div>
           </header>
 

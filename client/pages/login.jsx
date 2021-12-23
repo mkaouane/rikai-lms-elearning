@@ -144,13 +144,22 @@ export default function Login() {
       </div>
       <div className="flex justify-center items-center mt-6">
         <a
-          className=" inline-flex items-center text-gray-700 font-medium text-xs text-center "
+          className="items-center text-gray-700 font-medium text-xs text-center "
         >
           <span className="ml-2">
             You don't have an account?
             <Link href="/register">
             <a className="text-xs ml-2 text-blue-500 font-semibold">
               Login here
+            </a>
+            </Link>
+          </span>
+          <br/>
+          <span className="ml-2">
+            You forgot your password?
+            <Link href="/forgot-password">
+            <a className="text-xs ml-2 text-blue-500 font-semibold">
+              Reset password
             </a>
             </Link>
           </span>
