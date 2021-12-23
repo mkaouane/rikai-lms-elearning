@@ -22,7 +22,7 @@ const userSchema = new Schema(
     },
     picture: {
       type: String,
-      default: "/avatar.png",
+      default: "https://cdn-icons-png.flaticon.com/512/147/147144.png",
     },
     role: {
       type: [String],
@@ -32,6 +32,10 @@ const userSchema = new Schema(
     stripe_account_id: "",
     stripe_seller: {},
     stripeSession: {},
+    passwordResetCode: {
+      data: String,
+      default: ''
+    },
   },
   { timestamps: true }
 );

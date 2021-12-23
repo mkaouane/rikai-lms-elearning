@@ -3,6 +3,7 @@ import User from '../models/user'
 import { comparePassword, hashPassword } from '../utils/authUtils'
 import jwt from 'jsonwebtoken'
 import AWS from 'aws-sdk'
+import {nanoid} from 'nanoid'
 
 const awsConfig = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -54,6 +55,7 @@ export const login = async (req, res) => {
     if (!user) return res.status(400).send('No User found')
     // check password
     const match = await comparePassword(password, user.password)
+    if (!match) return res.status(400).send("Wrong password");
     // create signed jwt
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
@@ -92,13 +94,19 @@ export const currentUser = async (req,res) => {
   }
 }
 
-export const sendTestEmail = async (req, res) => {
+export const forgotPassword = async (req, res) => {
   // console.log('send test email')
   // res.json({hidden: true})
+  const {email} = req.body;
+  const shortCode = nanoid(6).toUpperCase();
+  const user = User.findOneAndUpdate({email}, {passwordResetCode : shortCode})
+
+  if(!user) return res.status(400).send('User not found');
+
   const params = {
     Source: process.env.EMAIL_FROM,
     Destination: {
-      ToAddresses:['mkaouane1@gmail.com'],
+      ToAddresses:[email],
     },
     ReplyToAddresses: [process.env.EMAIL_FROM],
     Message: {
@@ -106,16 +114,18 @@ export const sendTestEmail = async (req, res) => {
         Html: {
           Charset: "UTF-8",
           Data: `
-            <html>
-              <h1>Reset password</h1>
-              <p> Please use the following link to reset the password </p>
-            </html>
+          <html>
+          <h1>Reset password</h1>
+          <p>User this code to reset your password</p>
+          <h2 style="color:red;">${shortCode}</h2>
+          <i>edemy.com</i>
+        </html>
           `
         }
       },
       Subject: {
         Charset: "UTF-8",
-        Data: "Password Reset Link",
+        Data: "Reset Password",
       }
     }
   }
@@ -126,4 +136,23 @@ export const sendTestEmail = async (req, res) => {
     res.json({ok: true})
   }).catch(err => 
     console.log(err))
+}
+
+export const resetPassword = async (req,res) => {
+  try {
+    const {email, code, newPassword} = req.body;
+    console.table({ email, code, newPassword });
+
+    const hashedPassword = await hashPassword(newPassword);
+    const user = User.findOneAndUpdate({
+      email,
+      passwordResetCode: code,
+    },{
+      password: hashedPassword,
+      passwordResetCode: "",
+    }).exec();
+    res.json({ok: true})
+  } catch (error) {
+    return res.status(400).send("Error ! Try Again", error)
+  }
 }
