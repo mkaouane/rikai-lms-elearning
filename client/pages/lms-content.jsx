@@ -19,8 +19,11 @@ export default function LmsContent() {
             <HeaderNav />
 
             {/* <!-- Main --> */}
+
+
             <main class="max-w-full h-full flex relative overflow-y-hidden">
               {/* <!-- Container --> */}
+     
               <div class="h-full w-full m-4 pb-6 flex flex-wrap items-start justify-start rounded-tl grid-flow-col auto-cols-max gap-4 overflow-y-scroll">
                 {/* <!-- Container --> */}
                 <div class="w-60 lg:w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
@@ -40,6 +43,7 @@ export default function LmsContent() {
                 <div class="w-60 lg:w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
                 <div class="w-60 lg:w-96 h-60 rounded-lg flex-shrink-0 flex-grow bg-gray-400"></div>
               </div>
+  
             </main>
           </div>
 

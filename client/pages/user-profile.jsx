@@ -55,10 +55,10 @@ export default function UserProfile() {
                           <li class="flex items-center py-3">
                             {user && user.role && user.role.includes("Instructor") ? (
                               <li
-                                key="/instructor/course/create"
+                                key="/user/instructor/course/create"
                                 onClick={(e) => setCurrent(e.key)}>   
                                   <button className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl p-2 w-full transition duration-150 ease-in">
-                                <Link href="/instructor/course/create">
+                                <Link href="/user/instructor/course/create">
                                     Create Course
                                 </Link>
                                   </button>
