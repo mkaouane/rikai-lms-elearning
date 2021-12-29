@@ -4,8 +4,8 @@ import LmsContent from '../pages/lms-content'
 
 export default function AsideNav() {
     return (
-
-        <aside class="h-full w-16 flex flex-col space-y-10 items-center justify-center relative bg-gray-800 text-white">
+        <div class="">
+        <aside class="h-full w-16 flex flex-col space-y-10 items-center justify-center  bg-gray-800 text-white">
             {/* <!-- Profile --> */}
             <Link href="/user-profile">
             <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
@@ -37,6 +37,6 @@ export default function AsideNav() {
             </div>
             </Link>
         </aside>
-
+        </div>
     )
 }
