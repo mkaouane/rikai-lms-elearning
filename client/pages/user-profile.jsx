@@ -1,100 +1,209 @@
-import React from 'react'
+import Link from 'next/link'
+import React, { useState, useContext } from 'react'
 import AsideNav from '../components/AsideNav'
 import HeaderNav from '../components/HeaderNav'
+import { Context } from '../context'
+
 
 export default function UserProfile() {
-    return (
-        <div>
-        <div class="h-screen w-full bg-white relative flex overflow-hidden">
+  const [current, setCurrent] = useState('')
+  const { state, dispatch} = useContext(Context);
+  const { user } = state;
+  return (
+    <div>
+      <div class="h-screen w-full bg-splate-700 relative flex ">
 
-          {/* <!-- Sidebar --> */}
-          <AsideNav />
-          <div class="w-full h-full flex flex-col justify-between">
-            {/* <!-- Header --> */}
+        {/* <!-- Sidebar --> */}
+        <AsideNav />
+        <div class="w-full h-full flex flex-col justify-between">
+          {/* <!-- Header --> */}
 
-            <HeaderNav />
+          <HeaderNav />
 
-            {/* <!-- Main --> */}
-            <main class="max-w-full h-full flex relative overflow-y-hidden">
-              {/* <!-- Container --> */}
-              <div class="bg-slate-700 w-full py-10 px-10">
-  <div>
-    <div class="sm:flex space-x-7 md:items-start items-center">
-      <div class="mb-4">
-        <img class="rounded-md md:w-80" src="https://avatars.githubusercontent.com/u/5550850?v=4" alt="brad" />
-      </div>
-      <div>
-        <h1 class="text-slate-100 text-4xl font-bold my-2">Brad Traversy</h1>
-        <p class="text-slate-100 text-lg tracking-wide mb-6 md:max-w-lg">Full stack web developer and online instructor, specializiing in mostly JS, but also write Python, PHP and some other stuff.</p>
-        <button class="border-2 px-6 py-4 rounded-md border-indigo-600 text-slate-100 hover:bg-indigo-600 hover:text-indigo-100 transition duration-75">VISIT GITHUB PROFILE</button>
-      </div>
-    </div>
-  </div>
-  <div class="mt-8 sm:grid grid-cols-3 sm:space-x-4">
-    <div class="bg-slate-600 p-6 rounded-md mb-4">
-      <span class="text-slate-400 text-md">Location</span>
-      <h2 class="text-slate-100 text-2xl font-semibold">Massachusetts</h2>
-    </div>
-    <div class="bg-slate-600 p-6 rounded-md mb-4">
-      <span class="text-slate-400 text-md">Website</span>
-      <h2 class="text-slate-100 text-2xl font-semibold">traversymedia</h2>
-    </div>
-    <div class="bg-slate-600 p-6 rounded-md mb-4">
-      <span class="text-slate-400 text-md">Twitter</span>
-      <h2 class="text-slate-100 text-2xl font-semibold">traversymedia</h2>
-    </div>
-  </div>
-  <div class="sm:grid lg:grid-cols-4 grid-cols-2 sm:gap-x-4">
-    <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
-      <div>
-        <span class="text-md text-slate-400">Followers</span>
-        <h1 class="text-3xl font-bold text-slate-100">47155</h1>
-      </div>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      </div>
-    </div>
-    <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
-      <div>
-        <span class="text-md text-slate-400">Following</span>
-        <h1 class="text-3xl font-bold text-slate-100">9322</h1>
-      </div>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg>
-      </div>
-    </div>
-    <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
-      <div>
-        <span class="text-md text-slate-400">Public Rpos</span>
-        <h1 class="text-3xl font-bold text-slate-100">236</h1>
-      </div>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-        </svg>
-      </div>
-    </div>
-    <div class="flex justify-between items-center bg-slate-600 p-6 rounded-md mb-4">
-      <div>
-        <span class="text-md text-slate-400">Public Gists</span>
-        <h1 class="text-3xl font-bold text-slate-100">40</h1>
-      </div>
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-        </svg>
-      </div>
-    </div>
-  </div>
-</div>
-            </main>
-          </div>
+          {/* <!-- Main --> */}
+          <main class="max-w-full h-full flex relative overflow-y-scroll">
+            {/* <!-- Container --> */}
+            <div class="">
+              <div class="w-full text-white bg-main-color">
 
+
+                <div class="container mx-auto my-5 p-4">
+                  <div class="md:flex no-wrap md:-mx-2 ">
+                    <div class="w-full md:w-3/12 md:mx-2">
+                      <div class="p-3 border-t-4 border-green-400">
+                        <div class="image overflow-hidden">
+                          <img class="h-auto w-full mx-auto"
+                            src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                            alt=""></img>
+                        </div>
+                        <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Jane Doe</h1>
+                        <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
+                        <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
+                          consectetur adipisicing elit.
+                          Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
+                        <ul
+                          class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                          <li class="flex items-center py-3">
+                            <span>Status</span>
+                            <span class="ml-auto"><span
+                              class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
+                          </li>
+                          <li class="flex items-center py-3">
+                            <span>Member since</span>
+                            <span class="ml-auto">Nov 07, 2016</span>
+                          </li>
+                          <li class="flex items-center py-3">
+                            {user && user.role && user.role.includes("Instructor") ? (
+                              <li
+                                key="/instructor/course/create"
+                                onClick={(e) => setCurrent(e.key)}>   
+                                  <button className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl p-2 w-full transition duration-150 ease-in">
+                                <Link href="/instructor/course/create">
+                                    Create Course
+                                </Link>
+                                  </button>
+                              </li>
+                            ) : (
+                              <li
+                                key="/user/become-instructor"
+                                onClick={(e) => setCurrent(e.key)}>
+                                <button className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl p-2 w-full transition duration-150 ease-in">
+                                <Link href="/user/become-instructor">
+                                    Become Instructor
+                                </Link>
+                                  </button>
+                              </li>
+                            )}
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="my-4"></div>
+
+                    </div>
+                    <div class="w-full md:w-9/12 mx-2 h-64">
+                      <div class="bg-white p-3 shadow-sm rounded-sm">
+                        <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+                          <span clas="text-green-500">
+                            <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                          </span>
+                          <span class="tracking-wide">About</span>
+                        </div>
+                        <div class="text-gray-700">
+                          <div class="grid md:grid-cols-2 text-sm">
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">First Name</div>
+                              <div class="px-4 py-2">Jane</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Last Name</div>
+                              <div class="px-4 py-2">Doe</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Gender</div>
+                              <div class="px-4 py-2">Female</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Contact No.</div>
+                              <div class="px-4 py-2">+11 998001001</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Current Address</div>
+                              <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Permanant Address</div>
+                              <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Email.</div>
+                              <div class="px-4 py-2">
+                                <a class="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
+                              </div>
+                            </div>
+                            <div class="grid grid-cols-2">
+                              <div class="px-4 py-2 font-semibold">Birthday</div>
+                              <div class="px-4 py-2">Feb 06, 1998</div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="my-4"></div>
+
+                      <div class="bg-white p-3 shadow-sm rounded-sm">
+
+                        <div class="grid grid-cols-2">
+                          <div>
+                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                              <span clas="text-green-500">
+                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                  stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                              </span>
+                              <span class="tracking-wide">Experience</span>
+                            </div>
+                            <ul class="list-inside space-y-2">
+                              <li>
+                                <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                <div class="text-teal-600">Owner at Her Company Inc.</div>
+                                <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                            </ul>
+                          </div>
+                          <div>
+                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                              <span clas="text-green-500">
+                                <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                  stroke="currentColor">
+                                  <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+                                  <path fill="#fff"
+                                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                                </svg>
+                              </span>
+                              <span class="tracking-wide">Education</span>
+                            </div>
+                            <ul class="list-inside space-y-2">
+                              <li>
+                                <div class="text-teal-600">Masters Degree in Oxford</div>
+                                <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                              <li>
+                                <div class="text-teal-600">Bachelors Degreen in LPU</div>
+                                <div class="text-gray-500 text-xs">March 2020 - Now</div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
         </div>
+
       </div>
-    )
+    </div>
+  )
 }
