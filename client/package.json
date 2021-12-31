@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "@trendyol-js/react-carousel": "^2.0.1",
     "axios": "^0.24.0",
+    "bootstrap": "^5.1.3",
     "express": "^4.17.2",
     "http-proxy-middleware": "^2.0.1",
     "next": "12.0.7",
