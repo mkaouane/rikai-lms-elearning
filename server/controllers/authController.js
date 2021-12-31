@@ -88,7 +88,7 @@ export const currentUser = async (req,res) => {
   try {
     const user = await User.findById(req.user._id).select('-password').exec();
     console.log('Current user', user)
-    return res.json(user)
+    return res.json({ok: true})
   } catch (error) {
     console.log(error)
   }
@@ -155,4 +155,8 @@ export const resetPassword = async (req,res) => {
   } catch (error) {
     return res.status(400).send("Error ! Try Again", error)
   }
+}
+
+export const becomeInstructor = (req,res) => {
+  console.log(res.data)
 }
