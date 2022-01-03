@@ -23,13 +23,12 @@ export default function BecomeInstructor() {
     const { state: { user } } = useContext(Context)
 
     const becomeInstructor = () => {
-        axios.post('/api/become-instructor')
-            .then(res => console.log(res)
-    )
-    .catch(err => {console.log(err.response.status)
-    toast('Stripe onboarding failed')
-    })
-}
+        axios.post('/api/make-instructor')
+        .then((res) => {
+            console.log(res)
+            window.location.href = res.data
+        })
+    }
     return (
         <div className="relative bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
@@ -141,7 +140,6 @@ export default function BecomeInstructor() {
                             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                                 <div className="rounded-md shadow">
                                     <a
-                                        href="#"
                                         onClick={becomeInstructor}
                                         className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
                                         >
