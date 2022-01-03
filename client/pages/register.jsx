@@ -29,17 +29,13 @@ export default function Register() {
             email,
             password,
           })
-          const { data } = await axios.post(`/api/login`, {
-            email,
-            password,
-          });
           // console.log("LOGIN RESPONSE", data);
           dispatch({
             type: "LOGIN",
             payload: data,
           })
           window.localStorage.setItem('user', JSON.stringify(data));
-          router.push("/lms")
+          router.push("/")
       // console.log("REGISTER RESPONSE", data);
       toast.success('Registration succed')
       setLoading(false)
