@@ -3,6 +3,7 @@ import {Context} from '../context'
 import AsideNav from '../components/AsideNav';
 import HeaderNav from '../components/HeaderNav';
 import LmsContent from './lms-content';
+import UserRoute from '../components/routes/UserRoute';
 
 export default function Lms() {
 
@@ -10,6 +11,7 @@ export default function Lms() {
 
   return (
     <div>
+      <UserRoute>
       <div class="h-screen w-full bg-white relative flex overflow-hidden">
 
         {/* <!-- Sidebar --> */}
@@ -23,6 +25,8 @@ export default function Lms() {
         </div>
 
       </div>
+      </UserRoute>
+        
     </div>
   )
 }
