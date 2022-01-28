@@ -90,7 +90,7 @@ export const currentUser = async (req,res) => {
     console.log('Current user', user)
     return res.json({ok: true})
   } catch (error) {
-    console.log(error)
+    console.log('Error1',error)
   }
 }
 

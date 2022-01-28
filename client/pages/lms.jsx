@@ -10,8 +10,8 @@ export default function Lms() {
   const {state: {user}, dispatch} = useContext(Context);
 
   return (
-    <div>
       <UserRoute>
+    <div>
       <div class="h-screen w-full bg-white relative flex overflow-hidden">
 
         {/* <!-- Sidebar --> */}
@@ -25,8 +25,8 @@ export default function Lms() {
         </div>
 
       </div>
-      </UserRoute>
         
     </div>
+      </UserRoute>
   )
 }

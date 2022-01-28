@@ -15,7 +15,11 @@ const UserRoute = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const { data } = await axios.get("/api/current-user");
+      const { data } = await axios.get("/api/current-user", {
+        headers: {
+          "Content-Type":"application/json"
+        }
+      });
       //   console.log(data);
       if (data.ok) setOk(true);
     } catch (err) {
