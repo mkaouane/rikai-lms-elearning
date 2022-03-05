@@ -58,7 +58,7 @@ export default function Login() {
           Log In
         </div>
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
-          Enter your credentials to get access account
+          Enter your credentials to get access accounts
         </div>
 
         <div className="mt-10">
